@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Light Theme Colors */
+  --color-bg-main: #FDFBF7; /* Warm Paper White */
+  --color-bg-surface: #FFFFFF; /* Pure White */
+
+  --color-primary: #FF5500; /* Slightly darker orange for contrast */
+  --color-secondary: #FFAA50;
+
+  --color-text-main: #1F2937; /* Dark Gray */
+  --color-text-muted: #6B7280; /* Medium Gray */
+
+  --color-border: #E5E7EB; /* Light Gray */
+
+  /* ===== FONTS ===== */
+  --font-heading: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* ===== RADIUS ===== */
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  --shadow-glow: 0 0 30px rgba(255, 97, 14, 0.35);
+  --shadow-glow-strong: 0 0 50px rgba(255, 97, 14, 0.5);
+
+  --gradient-primary: linear-gradient(135deg, #FF610E, #FF9B50);
+  --gradient-text: linear-gradient(90deg, #1F2937, #FF5500);
+
+  /* ===== CARTOON UI ===== */
+  --border-width-cartoon: 3px;
+  --color-border-cartoon: #000000; /* Explicit black border for cartoon feel */
+  --shadow-cartoon: 4px 4px 0px 0px #000000;
+  --shadow-cartoon-hover: 6px 6px 0px 0px #000000;
+  
+  --radius-cartoon-pill: 9999px;
+  --radius-cartoon-card: 24px;
+  
+  --animation-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bangers", sans-serif;
+}
