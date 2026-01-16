@@ -10,7 +10,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex z-50 fixed top-6 left-1/2 -translate-x-1/2 items-center w-[calc(100%-3rem)] max-w-2xl md:justify-between px-6 py-3 rounded-full text-text-main text-sm bg-bg-surface/80 backdrop-blur-md border-2 border-black/10 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] transition-all duration-300">
+    <nav className="flex z-50 fixed top-6 left-1/2 -translate-x-1/2 items-center w-[calc(100%-3rem)] max-w-2xl justify-between px-6 py-3 rounded-full text-text-main text-sm bg-bg-surface/80 backdrop-blur-md border-2 border-black/10 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] transition-all duration-300">
       <a
         href="#"
         className="font-bold text-white text-lg w-10 h-10 flex items-center justify-center rounded-full bg-primary border-2 border-transparent hover:border-black/10 hover:scale-110 transition-all duration-300 shadow-md"
