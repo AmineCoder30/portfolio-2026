@@ -42,7 +42,7 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
           <div className="w-full h-full bg-white/20 -skew-x-12 translate-x-4"></div>
         </div>
       </div>
-      
+
       <p className="mt-4 font-bold text-text-muted">{progress}%</p>
     </div>
   );

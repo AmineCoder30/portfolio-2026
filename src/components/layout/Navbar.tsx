@@ -1,4 +1,4 @@
-import navLinks from "../../constants";
+import { navLinks } from "../../constants";
 import { useState } from "react";
 import { CustomButton } from "../ui/CustomButton";
 
@@ -10,25 +10,20 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex z-50 fixed top-6 left-1/2 -translate-x-1/2 items-center w-[calc(100%-3rem)] max-w-2xl justify-between px-6 py-3 rounded-full text-text-main text-sm bg-bg-surface/80 backdrop-blur-md border-2 border-black/10 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] transition-all duration-300">
-      <a
-        href="#"
-        className="font-bold text-white text-lg w-10 h-10 flex items-center justify-center rounded-full bg-primary border-2 border-transparent hover:border-black/10 hover:scale-110 transition-all duration-300 shadow-md"
-      >
-        A
-      </a>
+    <nav className="flex z-50 fixed top-0 left-0 items-center w-full justify-between px-6 py-3  text-text-main text-sm  ">
+      <h1 className="font-bold text-white text-3xl text-gradient">Amine</h1>
       <div className="hidden md:flex items-center gap-6 ml-7 font-medium">
         {navLinks.map((link) => (
           <a
-            href={link.href}
-            key={link.name}
+            href={link.link}
+            key={link.label}
             className="relative overflow-hidden h-6 group hover:text-primary transition-colors duration-300"
           >
             <span className="block group-hover:-translate-y-full transition-transform duration-300">
-              {link.name}
+              {link.label}
             </span>
             <span className="block absolute top-0 left-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-primary font-bold">
-              {link.name}
+              {link.label}
             </span>
           </a>
         ))}
@@ -58,13 +53,19 @@ function Navbar() {
       </button>
       <div
         id="mobileMenu"
-        className={`absolute top-20 left-0 w-full flex-col items-center gap-6 p-8 bg-bg-surface border-2 border-black/10 rounded-[24px] shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] font-medium transition-all duration-300 ${
-          isMenuOpen ? "flex md:hidden opacity-100 scale-100" : "hidden opacity-0 scale-95 pointer-events-none"
+        className={`absolute top-20 left-0 w-full flex-col items-center gap-6 p-8 bg-bg-main  font-medium transition-all duration-300 ${
+          isMenuOpen
+            ? "flex md:hidden opacity-100 scale-100"
+            : "hidden opacity-0 scale-95 pointer-events-none"
         }`}
       >
         {navLinks.map((link) => (
-          <a className="text-lg text-text-main hover:text-primary transition-colors font-bold" href={link.href} key={link.name}>
-            {link.name}
+          <a
+            className="text-lg text-text-main hover:text-primary transition-colors font-bold"
+            href={link.link}
+            key={link.label}
+          >
+            {link.label}
           </a>
         ))}
 

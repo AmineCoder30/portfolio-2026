@@ -1,88 +1,188 @@
 import { CustomButton } from "../ui/CustomButton";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { projects } from "../../constants";
+import { sections } from "../../constants";
 
-const projects = [
-  {
-    id: 1,
-    title: "E-Commerce Dashboard",
-    category: "Web App",
-    image: "bg-gradient-to-br from-purple-900 to-indigo-900", // Placeholder gradient
-    description: "A comprehensive dashboard for managing online stores with real-time analytics.",
-  },
-  {
-    id: 2,
-    title: "AI Image Generator",
-    category: "AI Tool",
-    image: "bg-gradient-to-br from-blue-900 to-cyan-900",
-    description: "Generate stunning visuals using the latest diffusion models.",
-  },
-  {
-    id: 3,
-    title: "Portfolio 2025",
-    category: "Website",
-    image: "bg-gradient-to-br from-orange-900 to-red-900",
-    description: "An award-winning portfolio site with immersive 3D interactions.",
-  },
-  {
-    id: 4,
-    title: "Finance Tracker",
-    category: "Mobile App",
-    image: "bg-gradient-to-br from-green-900 to-emerald-900",
-    description: "Track your expenses and investments in one place.",
-  },
-];
+interface Projects {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  description: string;
+  xtranslate: number;
+}
 
-function Projects() {
+function Projects({ 
+  currentSectionIndex, 
+  sectionIndex 
+}: { 
+  currentSectionIndex: number;
+  sectionIndex: number;
+}) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const isActive = currentSectionIndex === sectionIndex;
+  const section = sections[sectionIndex];
+
+  // Section transition animation
+  useEffect(() => {
+    if (!sectionRef.current || !backgroundRef.current || !contentRef.current) return;
+
+    const tl = gsap.timeline();
+
+    if (isActive) {
+      // Animate to active state
+      tl.to(backgroundRef.current, {
+        scaleX: 1,
+        borderBottomLeftRadius: "0%",
+        borderTopLeftRadius: "0%",
+        width: "100%",
+        height: "100vh",
+        duration: 0.8,
+   
+        ease: "power2.inOut",
+      })
+      .to(contentRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power1.out",
+      }, "-=0.3")
+      .to(".project-card", {
+        opacity: 1,
+        x: 0,
+        stagger: 0.1,
+        duration: 0.5,
+        ease: "power2.out",
+      }, "-=0.2");
+    } else {
+      // Animate to inactive state
+      tl.to(".project-card", {
+        opacity: 0,
+        x: 50,
+        duration: 0.2,
+        ease: "power1.in",
+      })
+      .to(contentRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.3,
+        ease: "power1.in",
+      }, "-=0.1")
+      .to(backgroundRef.current, {
+            scaleX: 0,
+        borderBottomLeftRadius: "100%",
+        borderTopLeftRadius: "100%",
+        duration: 0.6,
+        // ease: "power2.inOut",
+        transformOrigin: "right",
+        delay: 0.6,
+      }, "-=0.1");
+    }
+
+    return () => {
+      tl.kill();
+    };
+  }, [isActive]);
+
   return (
-    <section id="projects" className="py-24 ">
-      <div className="container mx-auto px-6">
-         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+    <section
+      ref={sectionRef}
+      id="projects"
+      style={{ 
+        zIndex: isActive ? 100 : sectionIndex,
+        pointerEvents: isActive ? 'auto' : 'none',
+      }}
+      className="fixed inset-0 w-full h-screen flex items-center justify-center"
+    >
+      <div
+        ref={backgroundRef}
+        style={{ background: section.bgGradient }}
+        className="absolute inset-0 origin-center overflow-hidden"
+      >
+        {/* Wave pattern background */}
+        <div className="absolute inset-0 opacity-10">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="wave" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                <path d="M0 50 Q 25 25, 50 50 T 100 50" stroke="white" strokeWidth="2" fill="none" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#wave)" />
+          </svg>
+        </div>
+
+        {/* Floating orbs */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 right-20 w-64 h-64 bg-white rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 left-20 w-80 h-80 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
+
+        <div 
+          ref={contentRef}
+          className="container mx-auto px-8 md:px-12 h-full flex flex-col items-center justify-center pt-32 pb-16 relative z-10"
+        >
+          <div className="flex flex-row  justify-between items-end mb-10 gap-4 w-full max-w-5xl">
             <div className="max-w-xl">
-               <h2 className="text-3xl md:text-5xl font-bold text-text-main mb-4">
-                 Selected <span className="text-primary">Works</span>
-               </h2>
-               <p className="text-text-muted">
-                 Here are some of the projects I've worked on recently.
-               </p>
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3 drop-shadow-lg">
+                Selected <span className="text-white/90">Works</span>
+              </h2>
+              <p className="text-white/80 text-base">
+                Here are some of the projects I've worked on recently.
+              </p>
             </div>
-            <CustomButton variant="outline">View All Projects</CustomButton>
-         </div>
+            <CustomButton variant="outline" size="sm">View All Projects</CustomButton>
+          </div>
 
-         {/* Staggered Grid (Masonry-ish) */}
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {/* Column 1 */}
-            <div className="flex flex-col gap-8 md:gap-12">
-               {projects.filter((_, i) => i % 2 === 0).map((project) => (
-                  <ProjectCard key={project.id} project={project} />
-               ))}
-            </div>
-
-            {/* Column 2 - Offset visually on pure grid, but here just stacked. 
-                For true offset often need margin-top on the second col. */}
-            <div className="flex flex-col gap-8 md:gap-12 md:pt-24">
-               {projects.filter((_, i) => i % 2 !== 0).map((project) => (
-                   <ProjectCard key={project.id} project={project} />
-               ))}
-            </div>
-         </div>
+          {/* Projects Grid */}
+          <div className="flex  gap-4 max-w-5xl w-full">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-function ProjectCard({ project }: { project: any }) {
+function ProjectCard({
+  project,
+}: {
+  project: Projects;
+}) {
   return (
-    <div className="group relative rounded-[24px] overflow-hidden bg-bg-main border-2 border-black/10 hover:border-black/20 hover:scale-[1.02] hover:-rotate-1 transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)]">
-      <div className={`aspect-[4/3] w-full ${project.image} relative overflow-hidden text-white`}>
-         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
-         {/* Overlay content */}
-         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <CustomButton variant="secondary" size="sm">View Case Study</CustomButton>
-         </div>
+    <div
+      className="group project-card w-full rounded-[24px] overflow-hidden bg-white/10 backdrop-blur-xl border-2 border-white/20 hover:border-white/40 hover:scale-[1.02] transition-all duration-300 shadow-2xl hover:shadow-[0_20px_60px_rgba(255,255,255,0.2)] opacity-0"
+      style={{ transform: 'translateX(50px)' }}
+    >
+      <div
+        className={`aspect-video w-full ${project.image} relative overflow-hidden text-white`}
+      >
+        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500" />
+        {/* Overlay content */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <CustomButton variant="secondary" size="sm">
+            View Case Study
+          </CustomButton>
+        </div>
       </div>
       <div className="p-6">
-         <span className="text-primary text-xs font-bold uppercase tracking-wider border border-primary px-2 py-1 rounded-full">{project.category}</span>
-         <h3 className="text-2xl font-bold text-text-main mt-4 mb-3">{project.title}</h3>
-         <p className="text-text-muted text-sm line-clamp-2">{project.description}</p>
+        <span className="text-white text-xs font-bold uppercase tracking-wider border border-white/30 bg-white/10 px-3 py-1 rounded-full">
+          {project.category}
+        </span>
+        <h3 className="text-2xl font-bold text-white mt-4 mb-3">
+          {project.title}
+        </h3>
+        <p className="text-white/70 text-sm line-clamp-2">
+          {project.description}
+        </p>
       </div>
     </div>
   );

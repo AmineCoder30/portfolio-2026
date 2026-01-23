@@ -1,77 +1,142 @@
+import { useRef, useEffect } from "react";
 import { Card } from "../ui/Card";
+import gsap from "gsap";
+import { services } from "../../constants";
+import { sections } from "../../constants";
 
-const services = [
-  {
-    title: "Web Development",
-    description: "Building fast, responsive, and accessible websites using modern frameworks like React and Next.js.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-    span: "md:col-span-2",
-  },
-  {
-    title: "UI/UX Design",
-    description: "Creating intuitive and visually appealing user interfaces.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-      </svg>
-    ),
-    span: "md:col-span-1",
-  },
-  {
-    title: "Mobile Apps",
-    description: "Cross-platform mobile applications for iOS and Android.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-      </svg>
-    ),
-    span: "md:col-span-1",
-  },
-  {
-    title: "Performance Optimization",
-    description: "Speeding up your digital products for better user retention.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-    span: "md:col-span-2",
-  },
-];
+function Services({ 
+  currentSectionIndex, 
+  sectionIndex 
+}: { 
+  currentSectionIndex: number;
+  sectionIndex: number;
+}) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-function Services() {
+  const isActive = currentSectionIndex === sectionIndex;
+  const section = sections[sectionIndex];
+
+  // Section transition animation
+  useEffect(() => {
+    if (!sectionRef.current || !backgroundRef.current || !contentRef.current) return;
+
+    const tl = gsap.timeline();
+
+    if (isActive) {
+      // Animate to active state
+      tl.to(backgroundRef.current, {
+        scaleY: 1,
+        borderBottomRightRadius: "0%",
+        borderBottomLeftRadius: "0%",
+        width: "100%",
+        height: "100vh",
+        duration: 0.8,
+   
+        ease: "power2.inOut",
+      })
+      .to(contentRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power1.out",
+      }, "-=0.3")
+      .to(".service-card", {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.4,
+        ease: "power1.out",
+      }, "-=0.2");
+    } else {
+      // Animate to inactive state
+      tl.to(".service-card", {
+        opacity: 0,
+        y: 20,
+        duration: 0.2,
+        ease: "power1.in",
+      })
+      .to(contentRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.3,
+        ease: "power1.in",
+      }, "-=0.1")
+      .to(backgroundRef.current, {
+            scaleY: 0,
+        borderBottomRightRadius: "100%",
+        borderBottomLeftRadius: "100%",
+        duration: 0.6,
+        // ease: "power2.inOut",
+        transformOrigin: "top center",
+        delay: 0.6,
+      }, "-=0.1");
+    }
+
+    return () => {
+      tl.kill();
+    };
+  }, [isActive]);
+
   return (
-    <section id="services" className="py-24 bg-bg-main">
-      <div className="container mx-auto px-6">
-        <div className="mb-16 text-center max-w-2xl mx-auto">
-           <h2 className="text-3xl md:text-5xl font-bold text-text-main mb-6">
-             My <span className="text-primary">Superpowers</span>
-           </h2>
-           <p className="text-text-muted">
-             I combine technical skills with creative design to deliver impactful solutions.
-           </p>
+    <section
+      ref={sectionRef}
+      id="services"
+      style={{ 
+        zIndex: isActive ? 100 : sectionIndex,
+        pointerEvents: isActive ? 'auto' : 'none',
+      }}
+      className="fixed inset-0 w-full h-screen flex items-center justify-center"
+    >
+      <div
+        ref={backgroundRef}
+        style={{ background: section.bgGradient }}
+        className="absolute inset-0 origin-center overflow-hidden"
+      >
+        {/* Animated gradient blobs */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
         </div>
 
-        {/* Bento Grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-             <Card
-               key={index}
-               className={`group ${service.span} border-black/10 hover:border-primary/50`}
-             >
-                <div className="w-14 h-14 bg-bg-main rounded-[16px] border-2 border-black/5 flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]">
+        {/* Radial gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/20" />
+
+        <div 
+          ref={contentRef}
+          className="container mx-auto px-8 md:px-12 h-full flex flex-col items-center justify-center pt-32 pb-16 relative z-10"
+        >
+          <div className="mb-12 text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 drop-shadow-lg">
+              My <span className="text-white/90">Superpowers</span>
+            </h2>
+            <p className="text-white/80 text-base">
+              I combine technical skills with creative design to deliver impactful
+              solutions.
+            </p>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl w-full">
+            {services.map((service, index) => (
+              <Card
+                key={index}
+                className="service-card group border-white/20 hover:border-white/40 shadow-2xl bg-white/10 backdrop-blur-xl hover:bg-white/15 opacity-0 transition-all duration-300"
+                style={{ transform: 'translateY(20px)' }}
+              >
+                <div className="w-14 h-14 bg-white/10 rounded-xl border-2 border-white/20 flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 shadow-lg">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold text-text-main mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
-                <p className="text-text-muted leading-relaxed">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-white/70 leading-relaxed">
                   {service.description}
                 </p>
-             </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>

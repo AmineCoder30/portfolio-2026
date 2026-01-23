@@ -1,4 +1,4 @@
-import type {ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "gradient";
 type ButtonSize = "sm" | "md" | "lg" | "xl";
@@ -15,22 +15,21 @@ interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-white border-3 border-black group-hover:bg-primary/90",
-  secondary:
-    "bg-secondary text-white border-3 border-black group-hover:bg-secondary/90",
+    "bg-gradient-to-r from-primary to-white text-black border border-white/30 hover:bg-white/20 hover:border-white/50 backdrop-blur-sm",
+  secondary: "bg-white text-gray-900 border border-white/20 hover:bg-white/90",
   outline:
-    "bg-transparent border-3 border-black text-black hover:bg-black/5",
-  ghost: 
-    "bg-transparent text-text-main border-3 border-transparent hover:border-black hover:bg-black/5",
+    "bg-transparent border border-white/30 text-white hover:bg-white/10 hover:border-white/50",
+  ghost:
+    "bg-transparent text-white border border-transparent hover:bg-white/10",
   gradient:
-    "bg-[image:var(--gradient-primary)] text-white border-3 border-black hover:brightness-110",
+    "bg-gradient-to-r from-purple-500 to-pink-500 text-white border border-white/20 hover:from-purple-600 hover:to-pink-600",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "px-5 py-2 text-sm",
-  md: "px-7 py-3 text-base",
-  lg: "px-9 py-4 text-lg",
-  xl: "px-12 py-5 text-xl",
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-2.5 text-base",
+  lg: "px-8 py-3 text-lg",
+  xl: "px-10 py-4 text-xl",
 };
 
 export const CustomButton = ({
@@ -45,12 +44,9 @@ export const CustomButton = ({
   disabled,
   ...props
 }: CustomButtonProps) => {
-  // Ultra-Cartoon styles:
-  // - border-3 (using arbitrary value or theme)
-  // - border-black
-  // - Hard shadow that is ALWAYS there, moves on hover, disappears on click
+  // Modern minimal button styles
   const baseStyles =
-    "group relative inline-flex items-center justify-center gap-2 font-black uppercase tracking-wider rounded-full transition-all duration-150 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none -translate-y-0 shadow-[4px_4px_0px_0px_#000000] hover:-translate-y-[2px] hover:shadow-[6px_6px_0px_0px_#000000] disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-4 focus:ring-black/20";
+    "group relative inline-flex items-center justify-center gap-2 font-medium rounded-md transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent";
 
   const widthStyle = fullWidth ? "w-full" : "";
 
