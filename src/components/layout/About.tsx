@@ -15,6 +15,7 @@ function About() {
   const containerRef = useRef<HTMLDivElement>(null);
   const FirsttextRef = useRef<HTMLDivElement>(null);
   const secondtextRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const FirstTextsplit = new SplitText(FirsttextRef.current, {
@@ -66,11 +67,30 @@ gsap.fromTo(
     scrollTrigger: {
       trigger: secondtextRef.current,
       start: "top 80%",
-      end: "top 50%",
+      end: "bottom bottom",
       scrub: true,
     },
   }
-);
+    );
+  gsap.fromTo(
+    buttonRef.current,
+    {
+      opacity: 0,
+      x: 20,
+    
+    },
+    {
+      opacity: 1,
+      x: 0,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: buttonRef.current,
+        start: "top 90%",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    }
+      );
 
   }, { scope: containerRef }); // Added scope for better cleanup
   return (
@@ -88,9 +108,10 @@ gsap.fromTo(
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-6xl mx-auto">
           {/* Text Content */}
           <div className=" flex flex-col order-2 md:order-1 gap-4">
-            <h2 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg text-gradient">
-              Crafting digital{" "}
-              <span className="text-white/90">masterpieces</span>.
+            <h2 className="text-[clamp(2.5rem,11vw,4rem)] leading-[1.1] font-bold text-white drop-shadow-lg text-gradient">
+              Crafting digital
+              <br />
+              masterpieces.
             </h2>
             <p className="text-white/80 leading-relaxed text-base md:text-lg" ref={FirsttextRef}>
               I am a passionate software engineer with a knack for turning
@@ -103,12 +124,12 @@ gsap.fromTo(
               a new dimension to web interfaces.
             </p>
 
-            <div className="pt-3 flex  items-center">
-              <CustomButton variant="outline" size="sm">
+            <div ref={buttonRef} className="mt-3 group flex w-fit rounded-md hover:bg-bg-surface w items-center">
+              <CustomButton variant="outline" className="group-hover:border-none " size="sm">
                 Get in Touch
               </CustomButton>
-              <button className="bg-bg-surface px-2 py-2 text-sm rounded-md">
-                <MoveUpRight size={20} />
+              <button className="bg-bg-surface px-2 py-2 text-sm rounded-md ">
+                <MoveUpRight size={16} className="group-hover:rotate-45 transition-all duration-300" />
               </button>
             </div>
           </div>

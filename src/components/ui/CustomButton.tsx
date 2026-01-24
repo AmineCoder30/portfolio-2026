@@ -15,21 +15,22 @@ interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-gradient-to-r from-primary to-white text-black border border-white/30 hover:bg-white/20 hover:border-white/50 backdrop-blur-sm",
-  secondary: "bg-white text-gray-900 border border-white/20 hover:bg-white/90",
+    "bg-white text-black shadow hover:bg-primary/90",
+  secondary:
+    "bg-secondary text-black shadow-sm hover:bg-secondary/80",
   outline:
-    "bg-transparent border border-white/30 text-white hover:bg-white/10 hover:border-white/50",
+    "border border-white/20 bg-transparent shadow-sm hover:bg-bg-surface text-white",
   ghost:
-    "bg-transparent text-white border border-transparent hover:bg-white/10",
+    "hover:bg-white/10 text-white hover:text-white",
   gradient:
-    "bg-gradient-to-r from-purple-500 to-pink-500 text-white border border-white/20 hover:from-purple-600 hover:to-pink-600",
+    "bg-primary text-white shadow hover:bg-primary/90", // Mapped to primary for flat look
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-2.5 text-base",
-  lg: "px-8 py-3 text-lg",
-  xl: "px-10 py-4 text-xl",
+  sm: "h-8 rounded-md px-3 text-xs",
+  md: "h-9 px-4 py-2",
+  lg: "h-10 rounded-md px-8",
+  xl: "h-12 rounded-md px-10 text-lg",
 };
 
 export const CustomButton = ({
@@ -44,9 +45,9 @@ export const CustomButton = ({
   disabled,
   ...props
 }: CustomButtonProps) => {
-  // Modern minimal button styles
+  // Modern minimal button styles (Shadcn-like)
   const baseStyles =
-    "group relative inline-flex items-center justify-center gap-2 font-medium rounded-md transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent";
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0";
 
   const widthStyle = fullWidth ? "w-full" : "";
 
@@ -59,7 +60,7 @@ export const CustomButton = ({
       {loading ? (
         <>
           <svg
-            className="animate-spin h-5 w-5"
+            className="animate-spin h-4 w-4"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

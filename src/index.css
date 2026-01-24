@@ -66,7 +66,7 @@ h6 {
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-t from-primary via-white to-primary bg-clip-text text-transparent;
+    @apply bg-gradient-to-t from-bg-surface via-white to-primary bg-clip-text text-transparent;
   }
 
   .glass {

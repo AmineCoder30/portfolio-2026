@@ -145,7 +145,7 @@ export const projects = [
     image: "bg-gradient-to-br from-purple-900 to-indigo-900", // Placeholder gradient
     description:
       "A comprehensive dashboard for managing online stores with real-time analytics.",
-    xtranslate: 0,
+    rotate: "rotate-6",
   },
   {
     id: 2,
@@ -153,7 +153,7 @@ export const projects = [
     category: "AI Tool",
     image: "bg-gradient-to-br from-blue-900 to-cyan-900",
     description: "Generate stunning visuals using the latest diffusion models.",
-    xtranslate: 40,
+    rotate: "-rotate-6",
   },
   {
     id: 3,
@@ -162,7 +162,7 @@ export const projects = [
     image: "bg-gradient-to-br from-orange-900 to-red-900",
     description:
       "An award-winning portfolio site with immersive 3D interactions.",
-    xtranslate: 80,
+    rotate: "rotate-9",
   },
   {
     id: 4,
@@ -170,6 +170,6 @@ export const projects = [
     category: "Mobile App",
     image: "bg-gradient-to-br from-green-900 to-emerald-900",
     description: "Track your expenses and investments in one place.",
-    xtranslate: 120,
+    rotate: "-rotate-10",
   },
 ];

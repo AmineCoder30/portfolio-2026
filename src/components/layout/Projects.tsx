@@ -13,7 +13,7 @@ interface Projects {
   category: string;
   image: string;
   description: string;
-  xtranslate: number;
+  rotate: string;
 }
 
 function Projects() {
@@ -114,7 +114,7 @@ function Projects() {
 function ProjectCard({ project }: { project: Projects }) {
   return (
     <div
-      className="group relative w-[80vw] md:w-[45vw] h-[60vh] shrink-0 rounded-[32px] overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500"
+      className={`group ${project.rotate} hover:rotate-0 relative w-[80vw] md:w-[45vw] h-[60vh] shrink-0 rounded-[32px] overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500`}
     >
       <div className={`absolute inset-0 w-full h-full ${project.image} bg-cover bg-center transition-transform duration-700 group-hover:scale-110`} />
       
