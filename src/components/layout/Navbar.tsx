@@ -2,6 +2,7 @@ import { navLinks } from "../../constants";
 import { useState } from "react";
 import { CustomButton } from "../ui/CustomButton";
 
+
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -10,7 +11,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex z-50 fixed top-0 left-0 items-center w-full justify-between px-6 py-3  text-text-main text-sm  ">
+    <nav className="flex z-50 bg-bg-main fixed top-0 left-0 items-center w-full justify-between px-6 py-3  text-text-main text-sm  ">
       <h1 className="font-bold text-white text-3xl text-gradient">Amine</h1>
       <div className="hidden md:flex items-center gap-6 ml-7 font-medium">
         {navLinks.map((link) => (

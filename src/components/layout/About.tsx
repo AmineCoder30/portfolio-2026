@@ -3,11 +3,76 @@ import StatsBar from "../ui/StatsBar";
 import { MoveUpRight } from "lucide-react";
 import { useRef } from "react";
 import ProfileCard from "../ui/ProfileCard";
-import hero from "../../assets/hero.png"
+import hero from "../../assets/hero.png";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitText from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function About() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const FirsttextRef = useRef<HTMLDivElement>(null);
+  const secondtextRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const FirstTextsplit = new SplitText(FirsttextRef.current, {
+      type: "words",
+    });
+    const SecondTextsplit = new SplitText(secondtextRef.current, {
+      type: "words",
+    });
+
+// First text
+gsap.fromTo(
+  FirstTextsplit.words,
+  {
+    filter: "blur(8px)",
+    opacity: 0,
+    y: 20,
+    willChange: "filter, transform, opacity",
+  },
+  {
+    filter: "blur(0px)",
+    opacity: 1,
+    y: 0,
+    stagger: 0.06,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: FirsttextRef.current,
+      start: "top 80%",
+      end: "top 50%",
+      scrub: true,
+    },
+  }
+);
+
+// Second text
+gsap.fromTo(
+  SecondTextsplit.words,
+  {
+    filter: "blur(8px)",
+    opacity: 0,
+    y: 20,
+    willChange: "filter, transform, opacity",
+  },
+  {
+    filter: "blur(0px)",
+    opacity: 1,
+    y: 0,
+    stagger: 0.06,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: secondtextRef.current,
+      start: "top 80%",
+      end: "top 50%",
+      scrub: true,
+    },
+  }
+);
+
+  }, { scope: containerRef }); // Added scope for better cleanup
   return (
     <section
       ref={containerRef}
@@ -17,34 +82,23 @@ function About() {
       {/* Stats Bar at Top */}
       <StatsBar  />
 
-      {/* Modern mesh gradient background */}
-      {/* <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-125 h-125 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl " />
-        <div
-          className="absolute bottom-0 left-0 w-125 h-125 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl "
-          style={{ animationDelay: "2s" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl "
-          style={{ animationDelay: "4s" }}
-        />
-      </div> */}
+  
 
       <div className="container mx-auto px-8 md:px-12 h-full flex items-center pt-28 md:pt-32 pb-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-6xl mx-auto">
           {/* Text Content */}
-          <div className=" flex flex-col gap-4" ref={textRef}>
+          <div className=" flex flex-col order-2 md:order-1 gap-4">
             <h2 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg text-gradient">
               Crafting digital{" "}
               <span className="text-white/90">masterpieces</span>.
             </h2>
-            <p className="text-white/80 leading-relaxed text-base md:text-lg">
+            <p className="text-white/80 leading-relaxed text-base md:text-lg" ref={FirsttextRef}>
               I am a passionate software engineer with a knack for turning
               complex problems into elegant, user-friendly solutions. My journey
               involves a deep dive into modern web technologies, always staying
               ahead of the curve.
             </p>
-            <p className="text-white/80 leading-relaxed text-lg">
+            <p className="text-white/80 leading-relaxed text-lg" ref={secondtextRef} >
               When I'm not coding, you can find me exploring 3D design to bring
               a new dimension to web interfaces.
             </p>
@@ -61,11 +115,11 @@ function About() {
 
           {/* Animated list */}
 
-          <div className="relative">
+          <div className="relative order-1 md:order-2">
             <ProfileCard
            
               avatarUrl={hero}
-              iconUrl={hero}
+         
            
             />
           </div>
