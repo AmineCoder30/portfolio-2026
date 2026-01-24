@@ -63,10 +63,7 @@ function About() {
 
           <div className="relative">
             <ProfileCard
-              name="A.Mohamed"
-              title="Software Engineer"
-            
-             
+           
               avatarUrl={hero}
               iconUrl={hero}
            
