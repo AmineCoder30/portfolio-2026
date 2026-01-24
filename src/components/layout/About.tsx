@@ -2,6 +2,8 @@ import { CustomButton } from "../ui/CustomButton";
 import StatsBar from "../ui/StatsBar";
 import { MoveUpRight } from "lucide-react";
 import { useRef } from "react";
+import ProfileCard from "../ui/ProfileCard";
+import hero from "../../assets/hero.png"
 
 function About() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,7 +12,7 @@ function About() {
     <section
       ref={containerRef}
       id="about"
-      className=" w-full relative h-screen flex items-center justify-center"
+      className=" w-full relative min-h-screen flex items-center justify-center"
     >
       {/* Stats Bar at Top */}
       <StatsBar  />
@@ -28,7 +30,7 @@ function About() {
         />
       </div> */}
 
-      <div className="container mx-auto px-8 md:px-12 h-full flex items-center pt-32 pb-16 relative z-10">
+      <div className="container mx-auto px-8 md:px-12 h-full flex items-center pt-28 md:pt-32 pb-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-6xl mx-auto">
           {/* Text Content */}
           <div className=" flex flex-col gap-4" ref={textRef}>
@@ -59,7 +61,17 @@ function About() {
 
           {/* Animated list */}
 
-          <div className="relative"></div>
+          <div className="relative">
+            <ProfileCard
+              name="A.Mohamed"
+              title="Software Engineer"
+            
+             
+              avatarUrl={hero}
+              iconUrl={hero}
+           
+            />
+          </div>
         </div>
       </div>
     </section>
