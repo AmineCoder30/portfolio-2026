@@ -18,19 +18,21 @@ const StatsBar = () => {
     // FORCE layout calculation
     gsap.set(container, { x: 0 });
 
-    // Wait one frame so widths are correct
-    requestAnimationFrame(() => {
-      const totalWidth = container.scrollWidth / 2;
+ 
 
-      if (!totalWidth) return; // safety
-
-      gsap.to(container, {
-        x: -totalWidth,
-        duration: 20,
-        ease: "none",
-        repeat: -1,
+    gsap.to(container, {
+        scrollTrigger: {
+            trigger: container,
+            start: "top 80%",
+            end: "bottom -10%",
+            scrub: true,
+        },
+        x: -500,
+        duration: 1,
+        ease: "power2.out",
+      
       });
-    });
+    
   }, []);
 
   return (

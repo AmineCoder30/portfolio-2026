@@ -1,15 +1,19 @@
 import { CustomButton } from "../ui/CustomButton";
 import StatsBar from "../ui/StatsBar";
 import { MoveUpRight } from "lucide-react";
+import { useRef } from "react";
 
 function About() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   return (
     <section
+      ref={containerRef}
       id="about"
       className=" w-full relative h-screen flex items-center justify-center"
     >
       {/* Stats Bar at Top */}
-      <StatsBar />
+      <StatsBar  />
 
       {/* Modern mesh gradient background */}
       {/* <div className="absolute inset-0 opacity-10">
@@ -27,7 +31,7 @@ function About() {
       <div className="container mx-auto px-8 md:px-12 h-full flex items-center pt-32 pb-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-6xl mx-auto">
           {/* Text Content */}
-          <div className=" flex flex-col gap-4">
+          <div className=" flex flex-col gap-4" ref={textRef}>
             <h2 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg text-gradient">
               Crafting digital{" "}
               <span className="text-white/90">masterpieces</span>.

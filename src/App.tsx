@@ -3,10 +3,6 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/layout/Hero";
 import About from "./components/layout/About";
-// import Services from "./components/layout/Services";
-// import Projects from "./components/layout/Projects";
-// import Blog from "./components/layout/Blog";
-// import Contact from "./components/layout/Contact";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
@@ -56,18 +52,6 @@ function App() {
           <Navbar />
           <Hero />
           <About />
-          {/* <Services 
-    
-          />
-          <Projects 
-        
-          />
-          <Blog 
-       
-          />
-          <Contact 
-       
-          /> */}
         </>
       )}
     </div>
