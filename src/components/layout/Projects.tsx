@@ -4,6 +4,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../../constants";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import CustomText from "../ui/CustomText";
+import { MoveUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,14 +42,14 @@ function Projects() {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
     <section
       id="projects"
       ref={sectionRef}
-      className="relative w-full h-screen overflow-hidden bg-zinc-950"
+      className="relative w-full h-screen overflow-hidden"
     >
       <div className="absolute inset-0 origin-center overflow-hidden pointer-events-none">
         {/* Wave pattern background */}
@@ -84,21 +86,31 @@ function Projects() {
         </div> */}
       </div>
 
-      <div ref={containerRef} className="flex h-full items-center px-12 gap-12 w-fit">
+      <div
+        ref={containerRef}
+        className="flex h-full items-center px-12 gap-12 w-fit"
+      >
         {/* Intro Text Section */}
         <div className="min-w-[40vw] md:min-w-[30vw] flex flex-col justify-center shrink-0">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg leading-tight">
-            Selected <br />
-            <span className="text-white/50">Works</span>
-          </h2>
+          <CustomText textOne="Selected Works" />
           <p className="text-white/80 text-lg md:text-xl max-w-md mb-8">
             Here are some of the projects I've worked on recently. Each one
             crafted with precision and passion.
           </p>
-          <div className="flex gap-4">
-            <CustomButton variant="outline" size="sm">
-              View All Projects
+          <div className="mt-3 group flex w-fit rounded-md hover:bg-bg-surface w items-center">
+            <CustomButton
+              variant="outline"
+              className="group-hover:border-none "
+              size="sm"
+            >
+              Get in Touch
             </CustomButton>
+            <button className="bg-bg-surface px-2 py-2 text-sm rounded-md ">
+              <MoveUpRight
+                size={16}
+                className="group-hover:rotate-45 transition-all duration-300"
+              />
+            </button>
           </div>
         </div>
 
@@ -114,16 +126,20 @@ function Projects() {
 function ProjectCard({ project }: { project: Projects }) {
   return (
     <div
-      className={`group ${project.rotate} hover:rotate-0 relative w-[80vw] md:w-[45vw] h-[60vh] shrink-0 rounded-[32px] overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500`}
+      className={`group ${project.rotate}  relative w-[80vw] md:w-[45vw] h-[60vh] shrink-0 rounded-4xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500`}
     >
-      <div className={`absolute inset-0 w-full h-full ${project.image} bg-cover bg-center transition-transform duration-700 group-hover:scale-110`} />
-      
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
+      <img
+        src={project.image}
+        alt={project.title}
+        className={`absolute  origin-left duration-150 inset-0 w-full h-full  `}
+      />
+
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-80" />
 
       <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 group-hover:translate-x-0">
-         <CustomButton variant="secondary" size="sm">
-            View Case Study
-         </CustomButton>
+        <CustomButton variant="secondary" size="sm">
+          View Case Study
+        </CustomButton>
       </div>
 
       <div className="absolute bottom-0 left-0 p-8 w-full">

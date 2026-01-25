@@ -74,6 +74,7 @@ export const services = [
       </svg>
     ),
     span: "md:col-span-2",
+    background: "bg-indigo-600",
   },
   {
     title: "UI/UX Design",
@@ -94,6 +95,7 @@ export const services = [
       </svg>
     ),
     span: "md:col-span-1",
+    background: "bg-pink-600",
   },
   {
     title: "Mobile Apps",
@@ -114,6 +116,7 @@ export const services = [
       </svg>
     ),
     span: "md:col-span-1",
+    background: "bg-green-600",
   },
   {
     title: "Performance Optimization",
@@ -134,42 +137,51 @@ export const services = [
       </svg>
     ),
     span: "md:col-span-2",
+    background: "bg-yellow-600",
   },
 ];
 
 export const projects = [
   {
     id: 1,
-    title: "E-Commerce Dashboard",
+    title: "Mernify:Chat App",
     category: "Web App",
-    image: "bg-gradient-to-br from-purple-900 to-indigo-900", // Placeholder gradient
+    image:
+      "https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1745940293/shopco_vzxp78.png", // Placeholder gradient
     description:
-      "A comprehensive dashboard for managing online stores with real-time analytics.",
+      "A real-time chat application built with the MERN stack, featuring user authentication and private messaging.",
     rotate: "rotate-6",
   },
   {
     id: 2,
-    title: "AI Image Generator",
+    title: "Anone:E-commerce",
     category: "AI Tool",
-    image: "bg-gradient-to-br from-blue-900 to-cyan-900",
-    description: "Generate stunning visuals using the latest diffusion models.",
+    image:
+      "https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1745940312/anon_jezaug.png",
+    description:
+      "An e-commerce platform built with React and Firebase, featuring product filtering, shopping cart functionality, and secure payment processing.",
     rotate: "-rotate-6",
   },
   {
     id: 3,
-    title: "Portfolio 2025",
+    title: "Tasky:task manager",
     category: "Website",
-    image: "bg-gradient-to-br from-orange-900 to-red-900",
+    image:
+      "https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1745940268/tasky_tiujuq.png",
     description:
-      "An award-winning portfolio site with immersive 3D interactions.",
-    rotate: "rotate-9",
+      "A modern task management application with user authentication and real-time updates.",
+    rotate: "rotate-6",
   },
   {
     id: 4,
-    title: "Finance Tracker",
+    title: "DeliverEase:Food Delivery",
     category: "Mobile App",
-    image: "bg-gradient-to-br from-green-900 to-emerald-900",
-    description: "Track your expenses and investments in one place.",
-    rotate: "-rotate-10",
+   image:"https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1749559388/Slide_16_9_-_11_ikmbgb.png",
+    description: "A food delivery application that connects users with local restaurants, offering features like real-time order tracking, restaurant ratings, and secure payment options.",
+    rotate: "-rotate-6",
   },
 ];
+
+
+
+export default projects;

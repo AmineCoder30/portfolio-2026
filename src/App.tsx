@@ -4,6 +4,8 @@ import Navbar from "./components/layout/Navbar";
 import Hero from "./components/layout/Hero";
 import About from "./components/layout/About";
 import Projects from "./components/layout/Projects";
+import Services from "./components/layout/Services";
+import Blog from "./components/layout/Blog";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
@@ -12,7 +14,7 @@ import { Loader } from "./components/ui/Loader";
 import { CustomCursor } from "./components/ui/CustomCursor";
 
 function App() {
-  gsap.registerPlugin(ScrollTrigger,SplitText);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -53,8 +55,10 @@ function App() {
           <CustomCursor />
           <Navbar />
           <Hero />
-            <About />
-            <Projects />
+          <About />
+          <Projects />
+          <Services />
+          <Blog />
         </>
       )}
     </div>

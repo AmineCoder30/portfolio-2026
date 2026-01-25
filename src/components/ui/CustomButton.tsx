@@ -14,16 +14,12 @@ interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    "bg-white text-black shadow hover:bg-primary/90",
-  secondary:
-    "bg-secondary text-black shadow-sm hover:bg-secondary/80",
+  primary: "bg-white text-black shadow hover:bg-primary/90",
+  secondary: "bg-secondary text-white shadow-sm hover:bg-secondary/80",
   outline:
     "border border-white/20 bg-transparent shadow-sm hover:bg-bg-surface text-white",
-  ghost:
-    "hover:bg-white/10 text-white hover:text-white",
-  gradient:
-    "bg-primary text-white shadow hover:bg-primary/90", // Mapped to primary for flat look
+  ghost: "hover:bg-white/10 text-white hover:text-white",
+  gradient: "bg-primary text-white shadow hover:bg-primary/90", // Mapped to primary for flat look
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

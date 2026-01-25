@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
+import CustomText from "../ui/CustomText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -17,82 +18,83 @@ function About() {
   const secondtextRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const FirstTextsplit = new SplitText(FirsttextRef.current, {
-      type: "words",
-    });
-    const SecondTextsplit = new SplitText(secondtextRef.current, {
-      type: "words",
-    });
+  useGSAP(
+    () => {
+      const FirstTextsplit = new SplitText(FirsttextRef.current, {
+        type: "words",
+      });
+      const SecondTextsplit = new SplitText(secondtextRef.current, {
+        type: "words",
+      });
 
-// First text
-gsap.fromTo(
-  FirstTextsplit.words,
-  {
-    filter: "blur(8px)",
-    opacity: 0,
-    y: 20,
-    willChange: "filter, transform, opacity",
-  },
-  {
-    filter: "blur(0px)",
-    opacity: 1,
-    y: 0,
-    stagger: 0.06,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: FirsttextRef.current,
-      start: "top 80%",
-      end: "top 50%",
-      scrub: true,
-    },
-  }
-);
-
-// Second text
-gsap.fromTo(
-  SecondTextsplit.words,
-  {
-    filter: "blur(8px)",
-    opacity: 0,
-    y: 20,
-    willChange: "filter, transform, opacity",
-  },
-  {
-    filter: "blur(0px)",
-    opacity: 1,
-    y: 0,
-    stagger: 0.06,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: secondtextRef.current,
-      start: "top 80%",
-      end: "bottom bottom",
-      scrub: true,
-    },
-  }
-    );
-  gsap.fromTo(
-    buttonRef.current,
-    {
-      opacity: 0,
-      x: 20,
-    
-    },
-    {
-      opacity: 1,
-      x: 0,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: buttonRef.current,
-        start: "top 90%",
-        end: "bottom bottom",
-        scrub: true,
-      },
-    }
+      // First text
+      gsap.fromTo(
+        FirstTextsplit.words,
+        {
+          filter: "blur(8px)",
+          opacity: 0,
+          y: 20,
+          willChange: "filter, transform, opacity",
+        },
+        {
+          filter: "blur(0px)",
+          opacity: 1,
+          y: 0,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: FirsttextRef.current,
+            start: "top 80%",
+            end: "top 50%",
+            scrub: true,
+          },
+        },
       );
 
-  }, { scope: containerRef }); // Added scope for better cleanup
+      // Second text
+      gsap.fromTo(
+        SecondTextsplit.words,
+        {
+          filter: "blur(8px)",
+          opacity: 0,
+          y: 20,
+          willChange: "filter, transform, opacity",
+        },
+        {
+          filter: "blur(0px)",
+          opacity: 1,
+          y: 0,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: secondtextRef.current,
+            start: "top 80%",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        },
+      );
+      gsap.fromTo(
+        buttonRef.current,
+        {
+          opacity: 0,
+          x: 20,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: buttonRef.current,
+            start: "top 90%",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        },
+      );
+    },
+    { scope: containerRef },
+  ); // Added scope for better cleanup
   return (
     <section
       ref={containerRef}
@@ -100,36 +102,48 @@ gsap.fromTo(
       className=" w-full relative min-h-screen flex items-center justify-center"
     >
       {/* Stats Bar at Top */}
-      <StatsBar  />
-
-  
+      <StatsBar />
 
       <div className="container mx-auto px-8 md:px-12 h-full flex items-center pt-28 md:pt-32 pb-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-6xl mx-auto">
           {/* Text Content */}
           <div className=" flex flex-col order-2 md:order-1 gap-4">
-            <h2 className="text-[clamp(2.5rem,11vw,4rem)] leading-[1.1] font-bold text-white drop-shadow-lg text-gradient">
-              Crafting digital
-              <br />
-              masterpieces.
-            </h2>
-            <p className="text-white/80 leading-relaxed text-base md:text-lg" ref={FirsttextRef}>
+         
+              <CustomText textOne="Crafting digital" textTwo="masterpieces." />
+         
+            <p
+              className="text-white/80 leading-relaxed text-base md:text-lg"
+              ref={FirsttextRef}
+            >
               I am a passionate software engineer with a knack for turning
               complex problems into elegant, user-friendly solutions. My journey
               involves a deep dive into modern web technologies, always staying
               ahead of the curve.
             </p>
-            <p className="text-white/80 leading-relaxed text-lg" ref={secondtextRef} >
+            <p
+              className="text-white/80 leading-relaxed text-lg"
+              ref={secondtextRef}
+            >
               When I'm not coding, you can find me exploring 3D design to bring
               a new dimension to web interfaces.
             </p>
 
-            <div ref={buttonRef} className="mt-3 group flex w-fit rounded-md hover:bg-bg-surface w items-center">
-              <CustomButton variant="outline" className="group-hover:border-none " size="sm">
+            <div
+              ref={buttonRef}
+              className="mt-3 group flex w-fit rounded-md hover:bg-bg-surface w items-center"
+            >
+              <CustomButton
+                variant="outline"
+                className="group-hover:border-none "
+                size="sm"
+              >
                 Get in Touch
               </CustomButton>
               <button className="bg-bg-surface px-2 py-2 text-sm rounded-md ">
-                <MoveUpRight size={16} className="group-hover:rotate-45 transition-all duration-300" />
+                <MoveUpRight
+                  size={16}
+                  className="group-hover:rotate-45 transition-all duration-300"
+                />
               </button>
             </div>
           </div>
@@ -137,12 +151,7 @@ gsap.fromTo(
           {/* Animated list */}
 
           <div className="relative order-1 md:order-2">
-            <ProfileCard
-           
-              avatarUrl={hero}
-         
-           
-            />
+            <ProfileCard avatarUrl={hero} />
           </div>
         </div>
       </div>
