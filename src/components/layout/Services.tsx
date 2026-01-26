@@ -12,27 +12,57 @@ gsap.registerPlugin(ScrollTrigger);
 function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.fromTo(
-      ".card-background",
-      {
-        scaleX: 0,
-      },
-      {
-        scaleX: 1,
+    if (!sectionRef.current || !gridRef.current) return;
 
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top center",
-          end: "top top",
-        },
-        ease: "power3.out",
-        duration: 1.2,
-        transformOrigin: "left center",
+    const cards = gsap.utils.toArray<HTMLElement>(".service-card");
+    const cardInners = gsap.utils.toArray<HTMLElement>(".card-inner");
+
+    // Set initial state - cards as one piece
+    gsap.set(gridRef.current, { gap: "0px" });
+    gsap.set(cards, { borderRadius: "0px" });
+    gsap.set(cardInners, { rotateY: 0 });
+
+    // Timeline for gap increase, border radius, then flip
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "10% top",
+        end: "bottom 20%",
+        scrub: 1,
+        pin: true,
       },
-    );
+    });
+
+    // Step 1: Increase gap between cards (they separate)
+    tl.to(gridRef.current, {
+      gap: "1rem",
+      duration: 0.4,
+      ease: "power2.out",
+    })
+      // Step 2: Add border radius simultaneously with gap
+      .to(
+        cards,
+        {
+          borderRadius: "1rem",
+          duration: 0.4,
+          ease: "power2.out",
+        },
+        "<", // Start at the same time as gap
+      )
+      // Step 3: Flip cards to show content
+      .to(
+        cardInners,
+        {
+          rotateY: 180,
+          duration: 0.6,
+
+          ease: "power2.inOut",
+        },
+        "+=0.2", // Small pause after separation
+      );
   }, []);
 
   return (
@@ -54,25 +84,57 @@ function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl w-full">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-3 max-w-4xl w-full"
+        >
           {services.map((service, index) => (
             <Card
               key={index}
-              className={`service-card col-span-1  ${service.span} bg-bg-main group overflow-hidden  shadow-2xl  backdrop-blur-xl   transition-all duration-300`}
-              style={{ transform: "translateY(20px)" }}
+              hoverEffect={false}
+              className={`service-card h-40 col-span-1 relative ${service.span}`}
+              style={{
+                borderRadius: "0px",
+              }}
             >
+              {/* Card Inner Wrapper for 3D flip */}
               <div
-                className={`absolute -z-1 card-background    inset-0 w-full h-full ${service.background}  `}
-              />
-              <div className="w-14 h-14 bg-bg-surface/10 rounded-xl border-2 border-border flex items-center justify-center text-text-main mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 shadow-lg">
-                {service.icon}
+                className="card-inner absolute inset-0"
+                style={{
+                  transformStyle: "preserve-3d",
+                  transition: "transform 0.6s",
+                }}
+              >
+                {/* Back face - Shows icon initially */}
+                <div
+                  className="absolute inset-0 flex flex-col items-center justify-center bg-bg-main  p-6"
+                  style={{
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                  }}
+                >
+                  <div className="w-14 h-14 bg-bg-surface/10 rounded-xl border-2 border-border flex items-center justify-center text-text-main mb-6 transition-transform duration-300 shadow-lg">
+                    {service.icon}
+                  </div>
+                </div>
+
+                {/* Front face - Shows title and description after flip */}
+                <div
+                  className={`absolute inset-0 rounded-xl flex flex-col items-center justify-center ${service.background} p-6`}
+                  style={{
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)",
+                  }}
+                >
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-white/80 leading-relaxed text-center">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-text-main mb-3 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-text-muted leading-relaxed">
-                {service.description}
-              </p>
             </Card>
           ))}
         </div>

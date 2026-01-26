@@ -20,7 +20,7 @@ export const Card = ({
   return (
     <div
       // style={{ ...style }}
-      className={`bg-bg-surface border-2 border-border rounded-[24px] p-8 shadow-card ${hoverStyles} ${className}`}
+      className={`bg-bg-surface  rounded-xl p-8 shadow-card ${hoverStyles} ${className}`}
     >
       {children}
     </div>
