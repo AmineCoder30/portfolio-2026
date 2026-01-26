@@ -6,7 +6,7 @@ function CustomText({
   textTwo?: string;
 }) {
   return (
-    <h2 className="text-[clamp(2.5rem,11vw,4rem)] leading-[1.1] font-bold text-white drop-shadow-lg text-gradient">
+    <h2 className="text-[clamp(2.5rem,11vw,4rem)] leading-[1.1] font-bold text-white text-gradient">
       {textOne}
       <br />
       {textTwo && textTwo}

@@ -45,10 +45,9 @@ const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-4 sm:px-6"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden section-padding"
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 hero-gradient" />
+ 
 
       {/* Floating Icons */}
       {icons.map(({ Icon, top, left, right }, index) => (

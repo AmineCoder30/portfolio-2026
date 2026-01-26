@@ -49,7 +49,7 @@ function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full   overflow-hidden"
     >
       <div className="absolute inset-0 origin-center overflow-hidden pointer-events-none">
         {/* Wave pattern background */}
@@ -88,12 +88,12 @@ function Projects() {
 
       <div
         ref={containerRef}
-        className="flex h-full items-center px-12 gap-12 w-fit"
+        className="flex h-full items-start section-padding gap-12 w-fit"
       >
         {/* Intro Text Section */}
         <div className="min-w-[40vw] md:min-w-[30vw] flex flex-col justify-center shrink-0">
           <CustomText textOne="Selected Works" />
-          <p className="text-white/80 text-lg md:text-xl max-w-md mb-8">
+          <p className="text-text-muted text-lg md:text-xl max-w-md mb-8">
             Here are some of the projects I've worked on recently. Each one
             crafted with precision and passion.
           </p>
@@ -126,7 +126,7 @@ function Projects() {
 function ProjectCard({ project }: { project: Projects }) {
   return (
     <div
-      className={`group ${project.rotate}  relative w-[80vw] md:w-[45vw] h-[60vh] shrink-0 rounded-4xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500`}
+      className={`group ${project.rotate}  relative w-[80vw] md:w-[45vw] h-[60vh] shrink-0 rounded-4xl overflow-hidden bg-bg-surface/5 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-500`}
     >
       <img
         src={project.image}
@@ -143,13 +143,13 @@ function ProjectCard({ project }: { project: Projects }) {
       </div>
 
       <div className="absolute bottom-0 left-0 p-8 w-full">
-        <span className="inline-block text-xs font-bold uppercase tracking-widest text-white/80 border border-white/20 bg-black/20 px-3 py-1 rounded-full mb-4 backdrop-blur-md">
+        <span className="inline-block text-xs font-bold uppercase tracking-widest text-text-muted border border-border bg-bg-main/20 px-3 py-1 rounded-full mb-4 backdrop-blur-md">
           {project.category}
         </span>
-        <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
+        <h3 className="text-3xl md:text-4xl font-bold text-text-main mb-3">
           {project.title}
         </h3>
-        <p className="text-white/70 text-base md:text-lg line-clamp-2 max-w-xl">
+        <p className="text-text-muted text-base md:text-lg line-clamp-2 max-w-xl">
           {project.description}
         </p>
       </div>

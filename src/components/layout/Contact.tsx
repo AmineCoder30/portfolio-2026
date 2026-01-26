@@ -73,7 +73,7 @@ function Contact({
         zIndex: isActive ? 100 : sectionIndex,
         pointerEvents: isActive ? 'auto' : 'none',
       }}
-      className="absolute inset-0 w-full h-screen flex items-center justify-center"
+      className="absolute inset-0 w-full  flex items-center justify-center"
     >
       <div
         ref={backgroundRef}
@@ -88,48 +88,48 @@ function Contact({
 
         <div 
           ref={contentRef}
-          className="container mx-auto px-8 md:px-12 text-center h-full flex flex-col items-center justify-center pt-32 pb-16 relative z-10"
+          className="container mx-auto section-padding text-center h-full flex flex-col items-center justify-center relative z-10"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-text-main mb-6 leading-tight drop-shadow-2xl">
             Have an idea? <br />
-            <span className="text-white/90">
+            <span className="text-text-muted">
               Let's build it.
             </span>
           </h2>
 
-          <p className="text-lg text-white/80 max-w-xl mx-auto mb-10">
+          <p className="text-lg text-text-muted max-w-xl mx-auto mb-10">
             I'm currently available for freelance projects and open to full-time
             opportunities. If you're interested in working together, please don't
             hesitate to get in touch.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-3 max-w-md mx-auto bg-white/10 backdrop-blur-xl p-2 rounded-full border border-white/30 active:translate-y-0.5 active:shadow-none transition-all shadow-xl">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-3 max-w-md mx-auto bg-bg-surface/10 backdrop-blur-xl p-2 rounded-full border border-border active:translate-y-0.5 active:shadow-none transition-all shadow-xl">
             <input
               type="email"
               placeholder="Enter your email address"
-              className="flex-1 bg-transparent border-none outline-none text-white px-4 py-2 placeholder-white/60 focus:ring-0 font-medium"
+              className="flex-1 bg-transparent border-none outline-none text-text-main px-4 py-2 placeholder-text-muted focus:ring-0 font-medium"
             />
             <CustomButton size="md">Send &rarr;</CustomButton>
           </div>
 
-          <div className="mt-16 flex flex-wrap justify-center gap-8 text-white/70 text-sm font-medium tracking-wide uppercase">
-            <a href="#" className="hover:text-white transition-colors">
+          <div className="mt-16 flex flex-wrap justify-center gap-8 text-text-muted text-sm font-medium tracking-wide uppercase">
+            <a href="#" className="hover:text-primary transition-colors">
               LinkedIn
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-primary transition-colors">
               Twitter
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-primary transition-colors">
               Instagram
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-primary transition-colors">
               GitHub
             </a>
           </div>
 
         </div>
       </div>
-          <div className=" fixed left-0 top-1/2 -translate-y-1/2 -rotate-90 text-white text-sm">
+          <div className=" fixed left-0 top-1/2 -translate-y-1/2 -rotate-90 text-text-muted text-sm">
             © 2026 Amine Mohamed. All rights reserved.
           </div>
     </section>

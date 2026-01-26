@@ -39,15 +39,15 @@ function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative w-full h-screen flex items-center justify-center"
+      className="relative w-full flex items-center justify-center"
     >
       <div
         ref={contentRef}
-        className="container mx-auto px-8 md:px-12 h-full flex flex-col items-center justify-center pt-32 pb-16 relative z-10"
+        className="container mx-auto section-padding h-full flex flex-col items-center justify-center relative z-10"
       >
         <div className="mb-12 text-center max-w-2xl mx-auto">
           <CustomText textOne="My Superpowers" />
-          <p className="text-white/80 text-base">
+          <p className="text-text-muted text-base">
             I combine technical skills with creative design to deliver impactful
             solutions.
           </p>
@@ -64,13 +64,13 @@ function Services() {
               <div
                 className={`absolute -z-1 card-background    inset-0 w-full h-full ${service.background}  `}
               />
-              <div className="w-14 h-14 bg-white/10 rounded-xl border-2 border-white/20 flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 shadow-lg">
+              <div className="w-14 h-14 bg-bg-surface/10 rounded-xl border-2 border-border flex items-center justify-center text-text-main mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 shadow-lg">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors">
+              <h3 className="text-xl font-bold text-text-main mb-3 group-hover:text-primary transition-colors">
                 {service.title}
               </h3>
-              <p className="text-white/70 leading-relaxed">
+              <p className="text-text-muted leading-relaxed">
                 {service.description}
               </p>
             </Card>

@@ -99,12 +99,12 @@ function About() {
     <section
       ref={containerRef}
       id="about"
-      className=" w-full relative min-h-screen flex items-center justify-center"
+      className=" w-full  relative min-h-screen flex items-center justify-center"
     >
       {/* Stats Bar at Top */}
       <StatsBar />
 
-      <div className="container mx-auto px-8 md:px-12 h-full flex items-center pt-28 md:pt-32 pb-16 relative z-10">
+      <div className="container mx-auto section-padding h-full flex items-center relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-6xl mx-auto">
           {/* Text Content */}
           <div className=" flex flex-col order-2 md:order-1 gap-4">
@@ -112,7 +112,7 @@ function About() {
               <CustomText textOne="Crafting digital" textTwo="masterpieces." />
          
             <p
-              className="text-white/80 leading-relaxed text-base md:text-lg"
+              className="text-text-muted leading-relaxed text-base md:text-lg"
               ref={FirsttextRef}
             >
               I am a passionate software engineer with a knack for turning
@@ -121,7 +121,7 @@ function About() {
               ahead of the curve.
             </p>
             <p
-              className="text-white/80 leading-relaxed text-lg"
+              className="text-text-muted leading-relaxed text-lg"
               ref={secondtextRef}
             >
               When I'm not coding, you can find me exploring 3D design to bring

@@ -14,12 +14,12 @@ interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: "bg-white text-black shadow hover:bg-primary/90",
-  secondary: "bg-secondary text-white shadow-sm hover:bg-secondary/80",
+  primary: "bg-primary text-bg-main shadow hover:bg-primary/90",
+  secondary: "bg-secondary text-bg-main shadow-sm hover:bg-secondary/80",
   outline:
-    "border border-white/20 bg-transparent shadow-sm hover:bg-bg-surface text-white",
-  ghost: "hover:bg-white/10 text-white hover:text-white",
-  gradient: "bg-primary text-white shadow hover:bg-primary/90", // Mapped to primary for flat look
+    "border border-border bg-transparent shadow-sm hover:bg-bg-surface text-text-main",
+  ghost: "hover:bg-bg-surface/10 text-text-main hover:text-primary",
+  gradient: "bg-primary text-bg-main shadow hover:bg-primary/90", // Mapped to primary for flat look
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -43,7 +43,7 @@ export const CustomButton = ({
 }: CustomButtonProps) => {
   // Modern minimal button styles (Shadcn-like)
   const baseStyles =
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0";
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0";
 
   const widthStyle = fullWidth ? "w-full" : "";
 
