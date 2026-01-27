@@ -3,13 +3,14 @@ import { useState, useRef, useEffect } from "react";
 import { CustomButton } from "../ui/CustomButton";
 import gsap from "gsap";
 
-
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
   const backdropRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const menuItemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const buttonRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,9 +23,9 @@ function Navbar() {
       // Open animation
       gsap.set(backdropRef.current, { display: "block" });
       gsap.set(menuRef.current, { display: "flex" });
-      
+
       const tl = gsap.timeline();
-      
+
       // Animate backdrop
       tl.fromTo(
         backdropRef.current,
@@ -35,7 +36,7 @@ function Navbar() {
           opacity: 1,
           duration: 0.3,
           ease: "power2.out",
-        }
+        },
       );
 
       // Animate menu container
@@ -51,7 +52,7 @@ function Navbar() {
           duration: 0.4,
           ease: "power2.out",
         },
-        "-=0.2"
+        "-=0.2",
       );
 
       // Stagger menu items
@@ -68,7 +69,7 @@ function Navbar() {
           stagger: 0.08,
           ease: "power2.out",
         },
-        "-=0.2"
+        "-=0.2",
       );
 
       // Animate button
@@ -85,7 +86,7 @@ function Navbar() {
             duration: 0.3,
             ease: "back.out(1.7)",
           },
-          "-=0.1"
+          "-=0.1",
         );
       }
     } else {
@@ -113,10 +114,38 @@ function Navbar() {
           duration: 0.2,
           ease: "power2.in",
         },
-        "-=0.15"
+        "-=0.15",
       );
     }
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleHideMenu = (e: MouseEvent) => {
+      const mouseY = e.clientY;
+      const threshold = 100; // Show navbar when mouse is within 100px from top
+
+      if (mouseY <= threshold) {
+        setIsNavVisible(true);
+      } else {
+        setIsNavVisible(false);
+      }
+
+      return () => {
+        window.removeEventListener("mousemove", handleHideMenu);
+      };
+    };
+    window.addEventListener("mousemove", handleHideMenu);
+  }, []);
+
+  useEffect(() => {
+    if (!navRef.current) return;
+
+    gsap.to(navRef.current, {
+      y: isNavVisible ? 0 : -100,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  }, [isNavVisible]);
 
   return (
     <nav className="flex z-50 bg-bg-main fixed top-0 left-0 items-center w-full justify-between px-6 py-3  text-text-main text-sm  ">
@@ -161,9 +190,9 @@ function Navbar() {
         </svg>
       </button>
       {/* Backdrop */}
-      <div 
+      <div
         ref={backdropRef}
-        onClick={handleMenuToggle} 
+        onClick={handleMenuToggle}
         className="w-full h-screen bg-bg-main/80 backdrop-blur-sm hidden md:hidden absolute top-20 left-0 z-40"
       />
 
@@ -175,7 +204,9 @@ function Navbar() {
       >
         {navLinks.map((link, index) => (
           <a
-            ref={(el) => { menuItemsRef.current[index] = el; }}
+            ref={(el) => {
+              menuItemsRef.current[index] = el;
+            }}
             className="text-lg text-text-main hover:text-primary transition-colors font-bold"
             href={link.link}
             key={link.label}

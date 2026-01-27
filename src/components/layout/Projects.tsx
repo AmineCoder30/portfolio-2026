@@ -1,13 +1,10 @@
 import { CustomButton } from "../ui/CustomButton";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../../constants";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import CustomText from "../ui/CustomText";
 import { MoveUpRight } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Projects {
   id: number;
@@ -34,7 +31,7 @@ function Projects() {
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top top",
+          start: "top 15%",
           end: () => `+=${totalScroll}`,
           pin: true,
           scrub: 1,

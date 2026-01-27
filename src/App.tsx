@@ -6,6 +6,7 @@ import About from "./components/layout/About";
 import Projects from "./components/layout/Projects";
 import Services from "./components/layout/Services";
 import Blog from "./components/layout/Blog";
+import Contact from "./components/layout/Contact";
 import TitleWatcher from "./components/layout/TitleWatcher";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -60,6 +61,7 @@ function App() {
           <Projects />
           <Services />
           <Blog />
+          <Contact />
           <TitleWatcher />
         </>
       )}
