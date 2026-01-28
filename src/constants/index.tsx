@@ -150,7 +150,7 @@ export const projects = [
       "https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1745940293/shopco_vzxp78.png", // Placeholder gradient
     description:
       "A real-time chat application built with the MERN stack, featuring user authentication and private messaging.",
-    rotate: "rotate-6",
+    rotate: "rotate-4",
   },
   {
     id: 2,
@@ -160,7 +160,7 @@ export const projects = [
       "https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1745940312/anon_jezaug.png",
     description:
       "An e-commerce platform built with React and Firebase, featuring product filtering, shopping cart functionality, and secure payment processing.",
-    rotate: "-rotate-6",
+    rotate: "-rotate-4",
   },
   {
     id: 3,
@@ -170,18 +170,18 @@ export const projects = [
       "https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1745940268/tasky_tiujuq.png",
     description:
       "A modern task management application with user authentication and real-time updates.",
-    rotate: "rotate-6",
+    rotate: "rotate-4",
   },
   {
     id: 4,
     title: "DeliverEase:Food Delivery",
     category: "Mobile App",
-   image:"https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1749559388/Slide_16_9_-_11_ikmbgb.png",
-    description: "A food delivery application that connects users with local restaurants, offering features like real-time order tracking, restaurant ratings, and secure payment options.",
-    rotate: "-rotate-6",
+    image:
+      "https://res.cloudinary.com/djmzvj6yf/image/upload/f_auto,q_auto,w_900/v1749559388/Slide_16_9_-_11_ikmbgb.png",
+    description:
+      "A food delivery application that connects users with local restaurants, offering features like real-time order tracking, restaurant ratings, and secure payment options.",
+    rotate: "-rotate-4",
   },
 ];
-
-
 
 export default projects;

@@ -148,26 +148,12 @@ function Navbar() {
   }, [isNavVisible]);
 
   return (
-    <nav className="flex z-50 bg-bg-main fixed top-0 left-0 items-center w-full justify-between px-6 py-3  text-text-main text-sm  ">
+    <nav
+      className={`flex z-50 ${isMenuOpen ? "bg-bg-main" : "transparent"}  fixed top-0 left-0 items-center w-full justify-between px-6 py-3  text-text-main text-sm  `}
+    >
       <img src="/logo.png" alt="Logo" className="w-12 h-12" />
-      <div className="hidden md:flex items-center gap-6 ml-7 font-medium">
-        {navLinks.map((link) => (
-          <a
-            href={link.link}
-            key={link.label}
-            className="relative overflow-hidden h-6 group hover:text-primary transition-colors duration-300"
-          >
-            <span className="block group-hover:-translate-y-full transition-transform duration-300">
-              {link.label}
-            </span>
-            <span className="block absolute top-0 left-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-primary font-bold">
-              {link.label}
-            </span>
-          </a>
-        ))}
-      </div>
 
-      <div className="hidden ml-14 md:flex items-center gap-4">
+      <div className="hidden ml-14  items-center gap-4">
         <CustomButton size="sm" variant="primary">
           Resume
         </CustomButton>
@@ -175,7 +161,7 @@ function Navbar() {
       <button
         id="menuToggle"
         onClick={handleMenuToggle}
-        className="md:hidden text-text-main hover:text-primary transition-colors"
+        className=" text-text-main hover:text-primary transition-colors"
       >
         <svg
           className="w-6 h-6"
@@ -193,14 +179,14 @@ function Navbar() {
       <div
         ref={backdropRef}
         onClick={handleMenuToggle}
-        className="w-full h-screen bg-bg-main/80 backdrop-blur-sm hidden md:hidden absolute top-20 left-0 z-40"
+        className="w-full h-screen bg-bg-main/80 backdrop-blur-sm hidden  absolute top-20 left-0 z-40"
       />
 
       {/* Mobile Menu */}
       <div
         ref={menuRef}
         id="mobileMenu"
-        className="absolute top-20 left-0 w-full hidden md:hidden z-50 flex-col items-center gap-6 p-8 bg-bg-main font-medium shadow-2xl border-t border-border"
+        className="absolute top-20 left-0 w-full hidden  z-50 flex-col items-center gap-6 p-8 bg-bg-main font-medium shadow-2xl border-t border-border"
       >
         {navLinks.map((link, index) => (
           <a

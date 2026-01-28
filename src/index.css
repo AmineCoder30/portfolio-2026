@@ -68,6 +68,9 @@ h5,
 h6 {
   font-family: var(--font-heading);
 }
+section {
+  border: 1px dashed var(--color-border);
+}
 
 /* Utilities */
 @layer utilities {

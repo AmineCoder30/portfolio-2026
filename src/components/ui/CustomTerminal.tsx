@@ -470,8 +470,8 @@ function CustomTerminal() {
 
   return (
     <div
-      className="w-full terminal max-w-4xl mx-auto bg-[#1e1e1e] rounded-lg overflow-hidden shadow-2xl font-mono"
-      style={{ minHeight: "500px" }}
+      className="w-full terminal max-w-xl mx-auto bg-[#1e1e1e] rounded-lg overflow-hidden shadow-2xl font-mono"
+      style={{ height: "400px" }}
     >
       {/* Mac-style window controls */}
       <div className="bg-[#323232] px-4 py-3 flex items-center border-b border-bg-main ">

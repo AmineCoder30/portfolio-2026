@@ -47,8 +47,6 @@ const Hero = () => {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden section-padding"
     >
- 
-
       {/* Floating Icons */}
       {icons.map(({ Icon, top, left, right }, index) => (
         <div
@@ -75,11 +73,11 @@ const Hero = () => {
         </div>
 
         {/* Main Heading */}
-        <h1 className="font-bold tracking-tight mb-6 leading-[0.9] text-[clamp(3.5rem,11vw,9rem)]">
+        <h1 className="font-bold tracking-tight mb-6 leading-[0.9] text-[clamp(3.5rem,11vw,8rem)]">
           <div className="block">
             <MorphingText texts={["Creative", "Innovative", "Passionate"]} />
           </div>
-          <span className="block text-gradient uppercase mt-2">Developer</span>
+          <span className="block text-white uppercase mt-2">Developer</span>
         </h1>
 
         {/* Subtitle */}
