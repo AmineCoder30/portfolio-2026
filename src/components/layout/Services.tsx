@@ -6,7 +6,7 @@ import CustomText from "../ui/CustomText";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import useMediaQuery from "react-responsive/dist/types/useMediaQuery";
+import { useMediaQuery } from "react-responsive";
 
 gsap.registerPlugin(ScrollTrigger);
 
